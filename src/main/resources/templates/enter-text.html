@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Enter Text - Text Trivia</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background-color: #f0f8ff; /* Light blue background color */
+            font-family: Arial, sans-serif; /* Use Arial font */
+        }
+
+        .page-title {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 36px;
+            color: #007bff; /* Blue font color */
+            text-shadow: 2px 2px #e6e6e6; /* Add a subtle text shadow */
+        }
+
+        .centered-text {
+            text-align: center;
+            margin: 50px auto;
+            padding: 20px;
+            border: 2px solid #007bff; /* Blue border color */
+            border-radius: 10px;
+            max-width: 600px;
+            background-color: #ffffff; /* White background color */
+            color: #333333; /* Dark font color */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add a box shadow effect */
+        }
+
+        .form-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            border-color: #007bff; /* Blue border color */
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #007bff; /* Blue border color */
+        }
+
+        .submit-btn {
+            margin-top: 20px;
+        }
+
+        .home-link {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .home-link a {
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff; /* White font color */
+            background-color: #007bff; /* Blue background color */
+            border-radius: 30px;
+            transition: background-color 0.3s ease; /* Add a smooth transition effect */
+        }
+
+        .home-link a:hover {
+            background-color: #0056b3; /* Darker blue background color on hover */
+        }
+
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+        .failure{
+            color: red;
+            font-weight: bold;
+        }
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        function submitForm() {
+            var title = $('#myForm input[name="title"]').val();
+            var text = $('#myForm textarea[name="text"]').val();
+
+            var data = {
+                name: title,
+                value: text
+            };
+
+            $.ajax({
+                url: '/text',
+                type: 'POST',
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                success: function(response) {
+                    // Handle the response from the server
+                    // Redirect or perform any necessary actions
+                    $('#successMessage')
+                        .text('Submission completed successfully')
+                        .removeClass()
+                        .addClass('success')
+                        .show();
+                    $('#myForm input[name="title"]').val('');
+                    $('#myForm textarea[name="text"]').val('');
+                },
+                error: function(xhr, status, error) {
+                    $('#successMessage')
+                        .text('Something went wrong')
+                        .removeClass()
+                        .addClass('failure')
+                        .show();
+                }
+            });
+        }
+    </script>
+
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form id="myForm">
+                <div class="form-group">
+                    <label for="title" class="form-title">Text Title</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter text title" required>
+                </div>
+                <div class="form-group">
+                    <label for="text" class="form-title">Text</label>
+                    <textarea class="form-control" id="text" name="text" rows="10" placeholder="Enter your text here" required></textarea>
+                </div>
+                <button type="button" class="btn btn-primary submit-btn" onclick="submitForm()">Submit Text</button>
+            </form>
+            <div id="successMessage" style="display: none;"></div>
+        </div>
+    </div>
+
+    <div class="home-link">
+        <a href="/homepage">Home</a>
+        <a href="/create-questions">Create Questions</a>
+        <a href="/answer-questions">Answer Questions</a>
+    </div>
+</div>
+</body>
+</html>

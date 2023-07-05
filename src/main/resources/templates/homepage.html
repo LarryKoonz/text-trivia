@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Text Trivia!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f0f8ff; /* Light blue background color */
+            font-family: Arial, sans-serif; /* Use Arial font */
+        }
+
+        .page-title {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 36px;
+            color: #007bff; /* Blue font color */
+            text-shadow: 2px 2px #e6e6e6; /* Add a subtle text shadow */
+        }
+
+        .centered-text {
+            text-align: center;
+            margin: 50px auto;
+            padding: 20px;
+            border: 2px solid #007bff; /* Blue border color */
+            border-radius: 10px;
+            max-width: 600px;
+            background-color: #ffffff; /* White background color */
+            color: #333333; /* Dark font color */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add a box shadow effect */
+        }
+
+        .home-link {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .home-link a {
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff; /* White font color */
+            background-color: #007bff; /* Blue background color */
+            border-radius: 30px;
+            transition: background-color 0.3s ease; /* Add a smooth transition effect */
+        }
+
+        .home-link a:hover {
+            background-color: #0056b3; /* Darker blue background color on hover */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="page-title">
+        Welcome to Text Trivia!
+    </h1>
+
+
+    <div class="centered-text">
+        <p class="lead">This application allows you to create a quiz from a text.</p>
+        <p>Once you enter a text, you may generate as many questions as you would like and then challenge yourself by trying to answer those questions and get a score.</p>
+    </div>
+
+    <div class="home-link">
+        <a href="/enter-text">Enter Text</a>
+        <a href="/create-questions">Create Questions</a>
+        <a href="/answer-questions">Answer Questions</a>
+    </div>
+</div>
+</body>
+</html>
